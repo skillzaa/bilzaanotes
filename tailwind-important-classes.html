@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./dist/tailwind.css">
+    <title>Tailwind CSS Important Classes</title>
+</head>
+<body class="bg-gray-200 mx-10 text-xl">
+<h1 class="bg-red-700 py-2 px-2 text-white rounded-full shadow font-serif text-center">Tail Wind CSS Important Classes</h1>    
+<p><b>Padding</b> For padding we use <b>p-10, p-1 etc</b>. P stand for padding, we can use px-10 and py-10 etc for padding in X and Y direction.</p>
+<p><b>Margin:</b> Just like padding we can use m-10, mx-10 etc, an important class is <b>mx-auto</b> which is used for centring objects (mx stand for margin X). </p>
+<p class="bg-gray-400 p-3 rounded shadow-outline"><i>Keep in mind every class that we mention here has a large number of variations, we do not need to mention every variation here we just have to remember a class and then we can look up its other variations. </i></p>
+<p><b>Shadow:</b> For shadow, shadow-outline etc</p>
+<p><b>rounded:</b> For rounding cornors, some variations are  rounded-full</p>
+<p><b>Border:</b> we use <i>border</i> for border, some variations are border-bottom/left/right etc, border-l-2 etc. Following are some examples of borders (for some reason to show border one has to add border-solid). Border left (border-l-8) is just upto 8. border-dotted works where as border-double does not work.</p>
+<style>
+  .orignal {
+    border-left: 140px solid blue;
+  }
+</style>
+<div class="orignal p-3 m-3 rounded border-solid  border-l-8  border-blue-600">Border example</div>
+<div class="p-3 m-3 rounded border-solid border-dotted border-l-8  border-gray-600">Border example</div>
+<div class="p-3 m-3 rounded border-solid  border-l-8  border-gray-600">The border was suppose to change when shrunk but does not work</div>
+
+<p><b>Backround Colors:</b> we use <i>bg-red-100</i>, there are many colors and they range from 100 to 900 thus we can make them light and strong.</p>
+<p><b>Psedo Classes:</b> We have <b>active, hover and focus</b> psedu classes which we can use just with semi colon eg <i>hover:bg-red-100</i> etc.</p>
+<p><b>Screen Sizes</b>: Just like Bootstrap we have 4 screen sizes sm,md,lg and xl.</p>
+<p><b>Container:</b> We do have container class but it does not auto center the text etc.</p>
+<p><b>font</b>: we use font-bold, font-semibold etc</p>
+<p><b>text</b>: we use text-lg, text-xl to increase the size of text. To change text color we usr <b>text-white</b> etc</p>
+<p><b>Font Family</b>: we can use font-seirf etc to set font family.The beauty of tailwind is once you get the hang of the classes you can make any design without using any CSS and just using CSS classes.</p>
+<p><b>Width:</b> we use w-?? for width w-1/2 is half width. w-screen is view port width.</p>
+<p class="bg-blue-200 border-blue-900  rounded shadow p-4 m-4"><span class="text-4xl">Text Alignment:</span> A very important topic, we do not need to involve the parent of the element rather we can just put <i>text-center, text-left, text-right</i> classes on any element and align the text. Following are the examples:</p>
+<div class="bg-gray-900 p-4 m-2">
+  <p class="text-left text-orange-600">Text Alignet left </p>
+  <p class="text-right text-teal-600">Text Alignet right </p>
+  <p class="text-center text-green-600">Text Alignet center </p>
+</div>
+
+</body>
+</html>
