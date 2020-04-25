@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../dist/tailwind.css">        
+    <title>What is Dockers</title>
+</head>
+<body class="bg-gray-100">
+<h1>What is Dockers</h1>    
+<p>In the old days of web-development each application would take one server. It was possible to place more than one application on a server but partitioning reasources between then was difficult.</p>
+<p>To solve the problem of partitioning different application on one server the concept of Virtual machine was introduced. Virtual Machine Presents a single physical server as many seperate machiens to the users.</p>
+<h2>What Are Virtual Machines (VMs)?</h2>
+<p>Historically, as server processing power and capacity increased, bare metal applications weren’t able to exploit the new abundance in resources. Thus, VMs were born, designed by running software on top of physical servers to emulate a particular hardware system. A <b>hypervisor</b>, or a virtual machine monitor, is software, firmware, or hardware that creates and runs VMs. It’s what sits between the hardware and the virtual machine and is necessary to virtualize the server.
+</p>
+<p>Within each virtual machine runs a unique guest operating system. VMs with different operating systems can run on the same physical server—a UNIX VM can sit alongside a Linux VM, and so on. Each VM has its own binaries, libraries, and applications that it services, and the VM may be many gigabytes in size.</p>
+<h2>Difference Between Virtual Machine and Container</h2>
+<p>VM is the entire copy of the operating system while the container will have minimal resources(less memory, less disk space, less usage of CPU) that are required to run a service. Therefore we can have many more containers running on a host machine than VMs.
+</p>
+<img src="../images/vmVsContainer.png" alt="" srcset="">
+<p>    
+Containers also tend to run faster than the VM, and they tend to boot a lot faster than VM.
+Since containers are lightweight and fast, it’s quicker to create new instances to meet the demand.
+</p>
+<p class="bg-gray-500 text-white p-8 m-2 border font-bold">A Container provides an abstract OS, while A VM provides an abstract machine that uses device drivers targeting the abstract machine</p>   
+<p class="bg-gray-500 text-white p-8 m-2 border font-bold">Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications.</p>
+</body>
+</html>
