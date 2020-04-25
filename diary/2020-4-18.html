@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Booleans As Attributes</h1>
+<p>When we make an attribute as Boolean that creates a big problem since Boolean("false") == true. So while converting to and from string to Boolean there is a lot of confusion. I have resorted to using numbers as 0 and 1 instead of true and false. Another way of using Booleans in attributes is not to send the attribute (keep it empty / undefined) since Boolean(undefined) == false</p>
+<p>So far there is no way to get Tailwind inside the components BUT I have decided that <b><i>Components are such a useful thing that using manual CSS is a small price to pay </i></b></p>
+<p>Now I can open and close a component  (ie hide and show) from inside.</p>
+<code>
+<pre>
+    import {LitElement, html,css} from 'lit-element'
+
+    class BilzaaTextBox extends LitElement {
+    static get styles() {
+    return css`
+      #theElement{
+      width:100%;
+      padding:8px;
+      border-radius:25px;
+      height:1.35rem;
+      caret-color: red;
+      display:"inline";
+      position:"absolute";
+      color: "black";
+      box-sizing: border-box;
+      }    
+     #theElement:focus {outline:0;} 
+    `}
+    
+    static get properties(){
+      return {
+        value : {type:String,reflect: true},
+        width : {type:Number, reflect:true},
+        height : {type:Number, reflect:true},
+        left : {type:Number, reflect:true},
+        top : {type:Number, reflect:true},
+        maxchar : {type:Number, reflect:true},
+        open : {type:Number,attribute: true , reflect:true}
+      }
+    }    
+    
+    constructor(){
+    super();
+    this.value="";
+    this.width=250;
+    this.height=25;
+    this.top=250;
+    this.left=250;
+    this.maxchar=5;
+    this.open = 0;
+    this.blinkOn = false;
+    setInterval(this.blink, 1500);
+    }
+    attributeChangedCallback(name, oldval, newval) {
+    console.log('attribute change: ',this.open);
+    // let elm = this.shadowRoot.querySelector('#theElement');    
+    // if(this.open==1){
+    //   elm.style.display="inline-block";
+    // }else{
+    //   elm.style.display="none";
+    // }
+     super.attributeChangedCallback(name, oldval, newval);
+    }
+    
+    blink=()=>{
+    if(this.open== 0){return;}  
+    let elm = this.shadowRoot.querySelector('#theElement');    
+    
+    elm.style.width = `${this.width}px`;
+    elm.style.height = `${this.height}px`;
+    elm.style.left = `${this.left}px`;
+    elm.style.top =  `${this.top}px`;
+    
+    if(this.blinkOn===true){
+        this.blinkOn = false;
+        elm.style.border = "2px solid #fcc4c4";
+        elm.focus();
+    }else{
+        this.blinkOn = true;
+        elm.style.border = "2px solid #ff0000"; 
+        elm.focus();
+    }
+    
+    }
+    firstUpdated() {
+     // this.blink();
+    }
+    keyUpHandler(e) {  
+    //--------maxchar----
+    if(this.value.length > this.maxchar){
+    alert(`You Exceeded Maximum Characters Allowed (${this.maxchar}) in the Title`);
+      //if(e.keyCode !== 8){return;}--not working
+    }
+    //----------------------------  
+    this.value = e.target.value;
+    let event = new CustomEvent('node-title-changed', {
+      bubbles: true,
+        detail: {      
+          value: this.value
+        }
+      });
+    this.dispatchEvent(event);
+    console.log('event :', event);
+    }
+    focusHandler(e) {  
+    let event = new CustomEvent('bilazaa-titlebox-focus', {
+      bubbles: true,
+        
+      });
+    this.dispatchEvent(event);
+    console.log('event :', event);
+    }
+    focusOutHandler(e) {  
+    let event = new CustomEvent('bilazaa-titlebox-focusout', {
+      bubbles: true,
+        
+      });
+    this.dispatchEvent(event);
+    console.log('event :', event);
+    }
+    
+    render() {
+    if(this.open ==1){
+      return html`
+    &lt;div id="outer">  
+      &lt;input id="theElement"  type="text"
+      @keyup="${this.keyUpHandler}"
+      @focus="${this.focusHandler}"
+      @focusout="${this.focusOutHandler}"
+      value="${this.value}"
+    >  
+    &lt;/div>
+     `
+    }else{
+      return html`
+    &lt;div id="outer">   
+    &lt;/div>
+     `  
+    }  
+    
+      
+    }//render
+    }
+    customElements.define('bilzaa-textbox', BilzaaTextBox);    
+</pre>    
+</code>
+</body>
+</html>
